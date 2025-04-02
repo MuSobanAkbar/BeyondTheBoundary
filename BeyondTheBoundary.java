@@ -55,7 +55,7 @@ public class BeyondTheBoundary
 		{
 			for(int i=0;i<6&&!out;i++)
 			{
-				System.out.println("Total Runs by CPU:" + cpuRuns +"\nBalls Left: " + (6-i)+"\nTotal Wickets: ");
+				System.out.println("\nTotal Runs by CPU:" + cpuRuns +"\nBalls Left: " + (6-i)+"\nTotal Wickets: ");
 				System.out.println("Please throw your ball "+ (i+1) + " (type 'throw'): ");
 				String throwB = scanner.nextLine();
 				if(throwB.equals("throw"))
@@ -80,22 +80,57 @@ public class BeyondTheBoundary
 				}
 			}
 			System.out.println("Over finished.");
+
+			// next over beginning 
+				for(int i =0;(i<6&&!out)||userRuns>cpuRuns;i++)
+				{
+					System.out.println("\nTotal Runs by you:" + userRuns +"\nBalls Left: " + (6-i)+"\nRuns left to chase: " + (cpuRuns-userRuns));
+					System.out.println("Please pick a batting style for ball "+ (i+1) + " (type 'strong'/'defense'): ");
+					String run = scanner.nextLine().toLowerCase();
+					if(run.equals("strong"))
+					{
+						int runsU = r.nextInt(3)+4;
+						userRuns+=runsU;
+					}
+					else if(run.equals("defense"))
+					{
+						int runsU = r.nextInt(5);
+						userRuns+=runsU;
+					}
+					else
+					{
+						System.out.println("Oops, you've been bowled.");
+						out=true;
+					}
+				}
+				if(userRuns==cpuRuns)
+				{
+					System.out.println("It's a draw.");
+				}
+				else if(userRuns>cpuRuns)
+				{
+					System.out.println("You have won.");
+				}
+				else
+				{
+					System.out.println("You lost.");
+				}
 		}
 		else if(tossC.equals("bowl")||userChoice.equals("BAT"))
 		{
 			for(int i =0;i<6&&!out;i++)
 			{
-				System.out.println("Total Runs by you:" + userRuns +"\nBalls Left: " + (6-i)+"\nTotal Wickets: ");
+				System.out.println("\nTotal Runs by you:" + userRuns +"\nBalls Left: " + (6-i)+"\nTotal Wickets: ");
 				System.out.println("Please pick a batting style for ball "+ (i+1) + " (type 'strong'/'defense'): ");
 				String run = scanner.nextLine().toLowerCase();
 				if(run.equals("strong"))
 				{
-					int runsU = r.nextInt(4 - 7)+4;
+					int runsU = r.nextInt(3)+4;
 					userRuns+=runsU;
 				}
 				else if(run.equals("defense"))
 				{
-					int runsU = r.nextInt(0-5)+5;
+					int runsU = r.nextInt(5);
 					userRuns+=runsU;
 				}
 				else
@@ -104,6 +139,46 @@ public class BeyondTheBoundary
 					out=true;
 				}
 			}
+			//next over begins
+			for(int i=0;(i<6&&!out)||cpuRuns>userRuns;i++)
+			{
+				System.out.println("\nTotal Runs by CPU:" + cpuRuns +"\nBalls Left: " + (6-i)+"\nTotal needed to chase: " + userRuns);
+				System.out.println("Please throw your ball "+ (i+1) + " (type 'throw'): ");
+				String throwB = scanner.nextLine();
+				if(throwB.equals("throw"))
+				{
+					int runs = r.nextInt(8);
+					if(runs==8)
+					{
+						System.out.print("OUT!");
+						out=true;
+						wicketsUser++;
+					}
+					else 
+					{
+						cpuRuns+=runs;
+					}
+				}
+				else 
+				{
+					System.out.println("Wide!");
+					cpuRuns++;
+					i--;
+				}
+			}
+			if(userRuns==cpuRuns)
+			{
+				System.out.println("It's a draw.");
+			}
+			else if(cpuRuns>userRuns)
+			{
+				System.out.println("You have won.");
+			}
+			else
+			{
+				System.out.println("You lost.");
+			}
+
 		}
 		System.out.println("Over finished.");
 
