@@ -1,6 +1,15 @@
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * Next steps:
+ * - Add the option to see how many runs have just been added exactly.
+ * - Add the option to get a stats screen in the end. 
+ * - Add the option to loop and play again.
+ * - Add the option for bowling types.
+ * - If bowling types is added, then follow with making combinations as to which batsmen 
+ * handles which bowler good or bad vice versa.
+ * 
+ * */
 public class BeyondTheBoundary
 {
 	public static void main(String [] args)
@@ -181,6 +190,7 @@ public class BeyondTheBoundary
 
 		}
 		System.out.println("Over finished.");
+
 
 	}
 }
